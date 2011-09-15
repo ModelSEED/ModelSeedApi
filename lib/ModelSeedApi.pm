@@ -7,12 +7,12 @@ our $VERSION = '0';
 
 my $fbamodel = ServerThing->new("ModelSEED::FBAMODEL");
 
+# Redirect /whatever => /$VERSION/whatever
 #any [qw(get post put delete head)] => qr{^/(\D*.?)} => sub {
 #    my ($part) = splat;
 #    warning "redirecting " . request->uri . " to /$VERSION/$part";
 #    redirect "/$VERSION/$part"
 #};
-
 
 any [qw(get post put delete head)] => qr{^/(\d+)/(.*)} => sub { 
     my ($version) = splat;
@@ -31,11 +31,10 @@ prefix "/$VERSION" => sub {
         my %params = params;
         return $fbamodel->call(\%params);
     };
-
     get '/' => sub {
-        redirect '/doc';
+        redirect "/$VERSION/docs";
     };
-    get '/doc' => sub {
+    get '/docs' => sub {
         return template 'index';
     };
 };
