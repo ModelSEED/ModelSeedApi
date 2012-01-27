@@ -4,7 +4,6 @@
 
 # Your application's name
 appname: "ModelSeedApi"
-# Another line of config
 
 # The default layout to use for your application (located in
 # views/layouts/main.tt)
