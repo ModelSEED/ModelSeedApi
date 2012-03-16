@@ -17,6 +17,7 @@ my $om       = ModelSEED::CoreApi->new({
     database => "/Users/devoid/test.db",
     driver   => "sqlite",
 });
+my $StatHat = StatHat->new();
 
 # handle version numbers
 any [qw(get post put delete head)] => qr{^/(\d+)} => sub { 
@@ -52,8 +53,8 @@ get '/biochemistry/:uuid/full' => sub {
         send_error("Not Found", 404);
     };
     if($data) {
-        StatHat::value($STAT_EMAIL, 'biochemistry/full/read', (time() - $time));       
-        StatHat::count($STAT_EMAIL, 'count-biochemistry/full/read', 1);       
+        $StatHat->value('biochemistry/full/read', (time() - $time));       
+        $StatHat->count('count-biochemistry/full/read', 1);       
         return $data;
     } else {
         send_error("Not Found", 404);

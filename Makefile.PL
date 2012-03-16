@@ -12,11 +12,18 @@ WriteMakefile(
       : ()),
     PL_FILES            => {},
     PREREQ_PM => {
-        'Test::More' => 0,
-        'YAML'       => 0,
-        'Dancer'     => 1.3072,
-        'Module::Refresh' => 0,
-    },
+        'Dancer'                => 1.3072,
+        'Exporter'              => 0,
+        'HTTP::Async'           => 0,
+        'HTTP::Request::Common' => 0,
+        'LWP::UserAgent'        => 0,
+        'Moose'                 => 0,
+        'Module::Refresh'       => 0,
+        'Test::More'            => 0,
+        'Time::HiRes'           => 0,
+        'YAML'                  => 0,
+
+        },
     dist                => { COMPRESS => 'gzip -9f', SUFFIX => 'gz', },
     clean               => { FILES => 'ModelSeedApi-*' },
 );
